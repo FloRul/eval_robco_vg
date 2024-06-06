@@ -34,3 +34,8 @@ options:
                         The folder to put the eval results in (model input + output)
 
 ```
+
+## Exemple 
+```bash
+python src/main.py --ws_address wss://qaj2t2uqlj.execute-api.ca-central-1.amazonaws.com/socket/ --sample_size 20 --ws_throttle 1 --parallelization_factor 1 --summary_eval_path summary_eval_results.json --eval_results_folder results
+```

@@ -1,15 +1,15 @@
 {
     "classification_accuracy": {
-        "classification_accuracy_score": 0.6666666666666666,
-        "balanced_accuracy_score": 0.6666666666666666,
-        "precision_score": 0.6666666666666666,
-        "recall_score": 0.6666666666666666
+        "classification_accuracy_score": 0.75,
+        "balanced_accuracy_score": 0.75,
+        "precision_score": 0.75,
+        "recall_score": 0.75
     },
     "qa_accuracy": {
-        "f1_score": 0.46511538508106015,
+        "f1_score": 0.309312770954132,
         "exact_match_score": 0.0,
         "quasi_exact_match_score": 0.0,
-        "precision_over_words": 0.46548061257738677,
-        "recall_over_words": 0.5041534391534391
+        "precision_over_words": 0.29147024644315667,
+        "recall_over_words": 0.34619708994708986
     }
 }

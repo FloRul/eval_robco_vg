@@ -70,8 +70,6 @@ def main(args):
 
     qa_algo = QAAccuracy(QAAccuracyConfig())
 
-    robco_runner_with_intent_output = RobcoRunner(ws_address=args.ws_address)
-
     classif_eval_result = classifier_algo.evaluate(
         model=RobcoRunner(ws_address=args.ws_address, output_intent=True),
         save=True,
