@@ -53,6 +53,14 @@ def main(args):
         target_output_location="Intent",
     )
 
+    redir_classif_config = DataConfig(
+        dataset_name="eval_data",
+        dataset_uri="data/master_datasets/redirection.jsonl",
+        dataset_mime_type="application/jsonlines",
+        model_input_location="Question",
+        target_output_location="Intent",
+    )
+
     classifier_algo = ClassificationAccuracy(
         ClassificationAccuracyConfig(
             valid_labels=valid_labels,
@@ -68,6 +76,14 @@ def main(args):
         target_output_location="Reponse",
     )
 
+    redirection_config = DataConfig(
+        dataset_name="redirection",
+        dataset_uri="data/master_datasets/redirection.jsonl",
+        dataset_mime_type="application/jsonlines",
+        model_input_location="Question",
+        target_output_location="Reponse",
+    )
+
     qa_algo = QAAccuracy(QAAccuracyConfig())
 
     classif_eval_result = classifier_algo.evaluate(
@@ -77,24 +93,36 @@ def main(args):
             ws_origin=args.ws_origin,
         ),
         save=True,
-        dataset_config=classif_config,
+        dataset_config=redir_classif_config,
         num_records=1000,
     )
 
-    qa_eval_result = qa_algo.evaluate(
+    # qa_eval_result = qa_algo.evaluate(
+    #     model=RobcoRunner(
+    #         ws_address=args.ws_address,
+    #         ws_origin=args.ws_origin,
+    #     ),
+    #     save=True,
+    #     dataset_config=qa_accuracy_config,
+    #     num_records=1000,
+    # )
+
+    redirection_result = qa_algo.evaluate(
         model=RobcoRunner(
             ws_address=args.ws_address,
             ws_origin=args.ws_origin,
         ),
         save=True,
-        dataset_config=qa_accuracy_config,
+        dataset_config=redirection_config,
         num_records=1000,
     )
 
     with open(args.summary_eval_path, "w") as f:
         f.write(
             json.dumps(
-                format_results([*classif_eval_result, *qa_eval_result]), indent=4
+                # format_results([*classif_eval_result, *qa_eval_result, *redirection_result]), indent=4
+                format_results([*redirection_result, *classif_eval_result]),
+                indent=4,
             )
         )
 
