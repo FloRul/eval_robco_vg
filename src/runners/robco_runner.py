@@ -16,8 +16,6 @@ class RobcoRunner(ModelRunner):
         ws_address: str,
         output_intent: bool = False,
         ws_origin: str = None,
-        *args,
-        **kwargs,
     ):
         assert ws_address is not None, "WebSocket address must be provided"
         assert ws_origin is not None, "WebSocket origin must be provided"
