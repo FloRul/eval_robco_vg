@@ -95,7 +95,6 @@ class ThrottledWebSocket:
             message = self.queue.get()
             try:
                 self.ws.send(message)
-                logger.info(f"Message sent: {message}")
                 time.sleep(float(os.environ.get("WS_THROTTLE")))  # throttle rate
             except Exception as e:
                 logger.error(f"Error sending message: {e}")
