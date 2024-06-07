@@ -10,6 +10,7 @@ import random
 from typing import List, Generator
 from websockets.sync.client import connect
 from fmeval.eval_algorithms import EvalOutput
+from websockets import Origin
 
 
 def csv_to_jsonl(csv_file_path: str, jsonl_file_path: str):
@@ -74,8 +75,10 @@ def combine_from_folder(folder: str, n: int = 10) -> Generator[str, None, None]:
 
 
 class ThrottledWebSocket:
-    def __init__(self, ws: str):
-        self.ws = connect(ws)
+    def __init__(self, ws: str, ws_origin: str = None):
+        assert ws_origin is not None
+        assert ws is not None
+        self.ws = connect(ws, origin=Origin(ws_origin))
         self.queue = queue.Queue()
         self.thread = threading.Thread(target=self._send_loop)
         self.thread.daemon = True

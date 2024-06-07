@@ -71,14 +71,21 @@ def main(args):
     qa_algo = QAAccuracy(QAAccuracyConfig())
 
     classif_eval_result = classifier_algo.evaluate(
-        model=RobcoRunner(ws_address=args.ws_address, output_intent=True),
+        model=RobcoRunner(
+            ws_address=args.ws_address,
+            output_intent=True,
+            ws_origin=args.ws_origin,
+        ),
         save=True,
         dataset_config=classif_config,
         num_records=1000,
     )
 
     qa_eval_result = qa_algo.evaluate(
-        model=RobcoRunner(ws_address=args.ws_address),
+        model=RobcoRunner(
+            ws_address=args.ws_address,
+            ws_origin=args.ws_origin,
+        ),
         save=True,
         dataset_config=qa_accuracy_config,
         num_records=1000,
@@ -119,6 +126,13 @@ if __name__ == "__main__":
         type=str,
         default="eval_results",
         help="The folder to put the eval results in (model input + output)",
+    )
+    parser.add_argument(
+        "--ws_origin",
+        type=str,
+        default=None,
+        help="The origin of the WebSocket connection (used for CORS)",
+        required=True,
     )
     args = parser.parse_args()
     main(args)

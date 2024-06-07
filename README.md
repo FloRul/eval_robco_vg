@@ -32,10 +32,12 @@ options:
                         WebSocket address
   --eval_results_folder EVAL_RESULTS_FOLDER
                         The folder to put the eval results in (model input + output)
+  --ws_origin WS_ORIGIN
+                        The origin of the WebSocket connection (used for CORS)
 
 ```
 
 ## Exemple 
 ```bash
-python src/main.py --ws_address wss://qaj2t2uqlj.execute-api.ca-central-1.amazonaws.com/socket/ --sample_size 20 --ws_throttle 1 --parallelization_factor 1 --summary_eval_path summary_eval_results.json --eval_results_folder results
+python src/main.py --ws_address wss://dkmwo6pd6rra6.cloudfront.net/socket/ --sample_size 20 --ws_throttle 1 --parallelization_factor 1 --summary_eval_path summary_eval_results.json --eval_results_folder results --ws_origin https://dkmwo6pd6rra6.cloudfront.net
 ```
