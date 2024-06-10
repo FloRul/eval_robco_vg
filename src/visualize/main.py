@@ -46,6 +46,7 @@ def main(args):
     # Create a pie chart
     plt.figure(figsize=(8, 8))  # Optional: Adjust the figure size
     plt.pie(values, labels=labels, autopct="%1.1f%%", startangle=140)
+    plt.legend()
 
     # Equal aspect ratio ensures that pie is drawn as a circle.
     plt.axis("equal")

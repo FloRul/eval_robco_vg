@@ -117,7 +117,7 @@ def main(args):
         num_records=1000,
     )
 
-    with open(args.summary_eval_path, "w") as f:
+    with open(f"{args.eval_results_folder}/eval_results_summary.json", "w") as f:
         f.write(
             json.dumps(
                 # format_results([*classif_eval_result, *qa_eval_result, *redirection_result]), indent=4
@@ -131,13 +131,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluation script")
     parser.add_argument(
         "--sample_size", type=int, default=1, help="Sample size per intent dataset"
-    )
-    parser.add_argument(
-        "--summary_eval_path",
-        type=str,
-        default="eval_results.json",
-        help="Path to save the eval summary results (json)",
-        metavar="PATH",
     )
     parser.add_argument(
         "--parallelization_factor",
