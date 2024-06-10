@@ -97,32 +97,32 @@ def main(args):
         num_records=1000,
     )
 
-    # qa_eval_result = qa_algo.evaluate(
-    #     model=RobcoRunner(
-    #         ws_address=args.ws_address,
-    #         ws_origin=args.ws_origin,
-    #     ),
-    #     save=True,
-    #     dataset_config=qa_accuracy_config,
-    #     num_records=1000,
-    # )
-
-    redirection_result = qa_algo.evaluate(
+    qa_eval_result = qa_algo.evaluate(
         model=RobcoRunner(
             ws_address=args.ws_address,
             ws_origin=args.ws_origin,
         ),
         save=True,
-        dataset_config=redirection_config,
+        dataset_config=qa_accuracy_config,
         num_records=1000,
     )
+
+    # redirection_result = qa_algo.evaluate(
+    #     model=RobcoRunner(
+    #         ws_address=args.ws_address,
+    #         ws_origin=args.ws_origin,
+    #     ),
+    #     save=True,
+    #     dataset_config=redirection_config,
+    #     num_records=1000,
+    # )
 
     with open(f"{args.eval_results_folder}/eval_results_summary.json", "w") as f:
         f.write(
             json.dumps(
-                # format_results([*classif_eval_result, *qa_eval_result, *redirection_result]), indent=4
-                format_results([*redirection_result, *classif_eval_result]),
-                indent=4,
+                format_results([*classif_eval_result, *qa_eval_result]), indent=4
+                # format_results([*redirection_result, *classif_eval_result]),
+                # indent=4,
             )
         )
 
